@@ -87,9 +87,38 @@ const Nav = () => {
               //  onClick={() => setToggleDropdown(!setToggleDropdown)}
               // onclick хийгдэх үед тухайн мөчид dropdown нээлттэй бол хаагдана, хаалттай бол нээгдэнэ (!setToggleDropdown) яг эсрэгээр нь хийнэ гэсэн үг.
               // React-ийг хөгжүүлэгчдийн зүгээс дараах аргыг хэрэглэхийг санал болгодгүй учир нь урьдчилан тооцоолохын аргагүй алдаа гарч болзошгүй юм. Учир нь хуучин байгаа state-ээ өөрчилж байгаа гэсэн үг.Харин тэрний оронд дараах аргыг хрэглэж болно.
-              //  энэ арга нь
               onClick={() => setToggleDropdown((prev) => !prev)}
             />
+            {/*  Хэрвээ toggleDropdown true байхын бол */}
+            {toggleDropdown && (
+              <div className="dropdown">
+                <Link
+                  href="/profile"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  My profile
+                </Link>
+                <Link
+                  href="/create-prompt"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Create Prompt
+                </Link>
+                {/*  Хэрвээ хэрэглэгч нэвтэрч орсон байгаа тохиолдолд буцах гарах товчийг дараах байдлаар хийнэ*/}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToggleDropdown(false);
+                    signOut;
+                  }}
+                  className="mt-5 w-full black_btn"
+                >
+                  Sign out
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <>
